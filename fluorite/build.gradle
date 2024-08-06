@@ -1,0 +1,32 @@
+plugins {
+    id 'java'
+}
+
+group = 'rikki.pub.webserver'
+version = '0.01'
+
+repositories {
+    maven {
+        url 'https://maven.aliyun.com/repository/public/'
+    }
+    maven {
+        url 'https://maven.aliyun.com/repository/central'
+    }
+    mavenLocal()
+    mavenCentral()
+}
+
+dependencies {
+    implementation group: 'com.sun.net.httpserver', name: 'http', version: '20070405'
+
+    testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.incremental = true
+}
+
+test {
+    useJUnitPlatform()
+}
